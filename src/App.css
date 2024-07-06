@@ -10,11 +10,11 @@
 }
 .sidebar {
   width: 40%;
-  background-color: pink;
+  border: 1px solid black;
   display: flex;
   flex-direction: column;
 }
 .resume-wrapper {
   width: 60%;
-  background-color: blue;
+  border:1px solid black;
 }
