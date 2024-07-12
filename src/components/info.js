@@ -4,10 +4,7 @@ import SubmitButton from "./buttons/SubmitButton";
 import EditButton from "./buttons/EditButton";
 import Input from "./buttons/Input";
 
-const Info = () => {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+const Info = ({ info, setInfo }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEdit = () => {
@@ -16,7 +13,6 @@ const Info = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`Full Name: ${fullName}, Email: ${email}, Phone: ${phone}`);
     setIsEditing(false);
   };
 
@@ -26,23 +22,32 @@ const Info = () => {
       {isEditing ? (
         <form onSubmit={handleSubmit}>
           <Input
-            value={fullName}
+            value={info.fullName}
             label="Full Name"
-            handleChange={setFullName}
+            handleChange={(value) => setInfo({ ...info, fullName: value })}
           />
-          <Input value={email} label="Email" handleChange={setEmail} />
-          <Input value={phone} label="phone" handleChange={setPhone} />
+          <Input
+            value={info.email}
+            label="Email"
+            handleChange={(value) => setInfo({ ...info, email: value })}
+          />
+          <Input
+            value={info.phone}
+            label="Phone"
+            handleChange={(value) => setInfo({ ...info, phone: value })}
+          />
           <SubmitButton />
         </form>
       ) : (
         <div>
-          <div>Full Name: {fullName}</div>
-          <div>Email: {email}</div>
-          <div>Phone: {phone}</div>
+          <div>Full Name: {info.fullName}</div>
+          <div>Email: {info.email}</div>
+          <div>Phone: {info.phone}</div>
           <EditButton onClick={handleEdit} />
         </div>
       )}
     </section>
   );
 };
+
 export default Info;

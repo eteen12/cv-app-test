@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 
-const Education = () => {
-  const [school, setSchool] = useState("");
-  const [degree, setDegree] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+const Education = ({ education, setEducation }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEdit = () => {
@@ -13,9 +9,6 @@ const Education = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(
-      `School: ${school}, Degree: ${degree}, Start Date: ${startDate}, End Date: ${endDate}`
-    );
     setIsEditing(false);
   };
 
@@ -28,46 +21,55 @@ const Education = () => {
             <label>School Name</label>
             <input
               type="text"
-              value={school}
-              onChange={(e) => setSchool(e.target.value)}
+              value={education.school}
+              onChange={(e) =>
+                setEducation({ ...education, school: e.target.value })
+              }
             />
           </div>
           <div className="input-field">
             <label>Degree</label>
             <input
               type="text"
-              value={degree}
-              onChange={(e) => setDegree(e.target.value)}
+              value={education.degree}
+              onChange={(e) =>
+                setEducation({ ...education, degree: e.target.value })
+              }
             />
           </div>
           <div className="input-field">
             <label>Start Date</label>
             <input
               type="date"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
+              value={education.startDate}
+              onChange={(e) =>
+                setEducation({ ...education, startDate: e.target.value })
+              }
             />
           </div>
           <div className="input-field">
             <label>End Date</label>
             <input
               type="date"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
+              value={education.endDate}
+              onChange={(e) =>
+                setEducation({ ...education, endDate: e.target.value })
+              }
             />
           </div>
           <button type="submit">Submit</button>
         </form>
       ) : (
         <div>
-          <div>School Name: {school}</div>
-          <div>Degree: {degree}</div>
-          <div>Start Date: {startDate}</div>
-          <div>End Date: {endDate}</div>
+          <div>School Name: {education.school}</div>
+          <div>Degree: {education.degree}</div>
+          <div>Start Date: {education.startDate}</div>
+          <div>End Date: {education.endDate}</div>
           <button onClick={handleEdit}>Edit</button>
         </div>
       )}
     </section>
   );
 };
+
 export default Education;
